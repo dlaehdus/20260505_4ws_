@@ -1,5 +1,12 @@
 teleop_node.py
 
+<img width="462" height="821" alt="image" src="https://github.com/user-attachments/assets/b0b6f1b5-23ad-4ba1-a709-af7ec8ffffc5" />
+<img width="505" height="855" alt="image" src="https://github.com/user-attachments/assets/9c1f7591-fb8a-4674-9ea0-a70f8c5c50e2" />
+<img width="482" height="810" alt="image" src="https://github.com/user-attachments/assets/0c582217-a4fb-4a8d-8a1d-1cb2210c9914" />
+<img width="490" height="789" alt="image" src="https://github.com/user-attachments/assets/b1c0f69e-8579-4aed-af62-7ba275da10a6" />
+<img width="509" height="813" alt="image" src="https://github.com/user-attachments/assets/f7e627c9-d63b-44b8-be37-b8fb044860c4" />
+
+
 이 코드는 ROS 2 기반의 4축 조향(4WS, Four Wheel Steering) 로봇을 키보드로 실시간 제어하기 위한 텔레옵(teleoperation) 프로그램이다.
 사용자가 키보드에서 W, A, S, D 키를 누르면 ROS 2의 cmd_vel 토픽으로 Twist 메시지를 발행하여 로봇의 선속도(linear velocity)와 각속도(angular velocity)를 제어한다. 동시에 Tkinter GUI를 이용해 현재 속도와 입력 상태를 실시간으로 시각화한다.
 
@@ -417,6 +424,9 @@ ROS 2에서 wheel_speeds 메시지가 들어오면 speed_callback() 함수가 �
 또한 안전 기능도 포함되어 있다. 일정 시간 동안 wheel_speeds 메시지가 들어오지 않으면 로봇이 폭주하지 않도록 자동으로 모든 모터를 정지시키고 Disable 상태로 만든다. 이는 ROS 노드 종료, USB 분리, 통신 오류 같은 상황에서 매우 중요한 보호 기능이다.
 프로그램 종료 시에도 단순히 꺼지는 것이 아니라 먼저 모든 바퀴 속도를 0으로 만들고 모터를 Disable한 뒤 시리얼 포트를 닫는다. 따라서 갑작스러운 종료 상황에서도 로봇이 계속 움직이지 않도록 안전하게 설계되어 있다.
 결국 이 코드는 ROS 2 기반 모바일 로봇에서 실제 하드웨어 모터를 움직이기 위한 최하단 제어 계층이며, ROS 메시지와 산업용 모터 드라이버 사이를 연결하는 인터페이스 역할을 수행한다.
+<img width="491" height="710" alt="image" src="https://github.com/user-attachments/assets/44673f60-cbcd-4ea0-a2f7-5903890ba11a" />
+<img width="497" height="837" alt="image" src="https://github.com/user-attachments/assets/9237003c-4807-46b1-82fd-acdeed33d166" />
+<img width="497" height="672" alt="image" src="https://github.com/user-attachments/assets/5d8d3c8f-dfc2-4f52-8740-94b2a8766d9f" />
 
 
 --------------------------------------------------------------------------------------------------------------
@@ -434,12 +444,27 @@ ROS 2에서 steering_angles 메시지가 들어오면 angle_callback() 함수가
 프로그램이 종료될 때도 단순히 꺼지지 않는다. 먼저 모든 조향축을 초기 위치로 되돌린 후 토크를 해제한다. 토크를 끄면 모터가 강제로 힘을 유지하지 않기 때문에 과열이나 기계적 스트레스를 줄일 수 있다. 마지막으로 시리얼 포트를 닫고 노드를 종료한다.
 결국 이 코드는 ROS 2 기반 4륜 조향 로봇에서 계산된 조향각을 실제 다이나믹셀 서보모터의 위치 제어 명령으로 변환하여 물리적인 바퀴 방향을 만드는 하드웨어 인터페이스 계층이다.
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+배선
+
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/ebca23cc-4d84-4d42-8037-c1400e339d0a" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/84694480-6e00-4b25-a023-0de3f2fa1b0b" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/c790a8e2-e426-4d09-9f64-f5564c6e838b" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/619de37f-96be-4a7f-a302-371a2d9f856f" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/3fbaad32-0f24-44d5-9f8b-2792cdc01159" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/5c55431f-a519-4bbb-a0d7-368c39d57dd0" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/d993b602-78ee-45bf-a1cf-e92a1e2cb762" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/013f3c89-33c3-4ebf-8200-adf216fb3026" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/684766b5-eb87-42ad-a11b-5ac3dce13e15" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/32188de4-2424-4002-8f79-76908a55b9a7" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/139fdd1a-2d86-47f6-a238-6442248ecb71" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/3f40b8e6-5244-45e4-8cd5-a4e72e4f9f8e" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/5a193794-b5d7-4963-8353-bb4783ed1497" />
+<img width="1080" height="1440" alt="image" src="https://github.com/user-attachments/assets/9b893cf9-2417-441c-930b-1e4316e3b8b9" />
 
 
-
-
-
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+주행
 
 
 
